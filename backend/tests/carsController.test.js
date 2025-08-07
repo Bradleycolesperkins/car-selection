@@ -74,6 +74,45 @@ describe('Cars Controller', () => {
                 totalPages: 1,
             });
         });
+
+        test('filters by make and paginates', async () => {
+            const req = { query: { make: 'Acura', page: 1, limit: 1 } };
+            const res = { json: jest.fn() };
+            await carsController.getCars(req, res);
+            expect(res.json).toHaveBeenCalledWith({
+                cars: [mockCars[0]],
+                total: 2,
+                page: 1,
+                limit: 1,
+                totalPages: 2,
+            });
+        });
+
+        test('filters by multiple criteria', async () => {
+            const req = { query: { make: 'Acura', year: '2020', fuelType: 'premium unleaded (recommended)' } };
+            const res = { json: jest.fn() };
+            await carsController.getCars(req, res);
+            expect(res.json).toHaveBeenCalledWith({
+                cars: [mockCars[0], mockCars[2]],
+                total: 2,
+                page: 1,
+                limit: 9,
+                totalPages: 1,
+            });
+        });
+
+        test('handles pagination with second page', async () => {
+            const req = { query: { page: 2, limit: 1 } };
+            const res = { json: jest.fn() };
+            await carsController.getCars(req, res);
+            expect(res.json).toHaveBeenCalledWith({
+                cars: [mockCars[1]],
+                total: 3,
+                page: 2,
+                limit: 1,
+                totalPages: 3,
+            });
+        });
     });
 
 });
