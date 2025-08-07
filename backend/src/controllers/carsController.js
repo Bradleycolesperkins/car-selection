@@ -13,7 +13,7 @@ async function initializeCars() {
 initializeCars();
 
 exports.getCars = (req, res) => {
-    const { make, model, submodel, year } = req.query;
+    const { make, model, submodel, year, engine } = req.query;
     let filteredCars = [...cars];
 
     if (make) {
@@ -28,6 +28,9 @@ exports.getCars = (req, res) => {
     if (year) {
         filteredCars = filteredCars.filter(car => car.year.toLowerCase() === year.toLowerCase());
     }
+    if (engine) {
+        filteredCars = filteredCars.filter(car => car.engine.toLowerCase() === engine.toLowerCase());
+    }
 
     res.json({
         cars: filteredCars,
@@ -39,6 +42,7 @@ exports.getFilterOptions = (req, res) => {
     const models = [...new Set(cars.map(car => car.model))].sort();
     const submodels = [...new Set(cars.map(car => car.submodel))].sort();
     const years = [...new Set(cars.map(car => car.year))].sort();
+    const engines = [...new Set(cars.map(car => car.engine))].sort();
 
-    res.json({ makes, models, submodels, years });
+    res.json({ makes, models, submodels, years, engines });
 };
