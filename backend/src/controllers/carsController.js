@@ -13,7 +13,7 @@ async function initializeCars() {
 initializeCars();
 
 exports.getCars = (req, res) => {
-    const { make, model, year, bodyType, submodel, fuelType, maxPrice, minMpg } = req.query;
+    const { make, model, year, bodyType, submodel, fuelType, maxPrice, minMpg, page = 1, limit = 9 } = req.query;
     let filteredCars = [...cars];
 
     if (make) {
@@ -41,9 +41,20 @@ exports.getCars = (req, res) => {
         filteredCars = filteredCars.filter(car => car.combinedMpg >= parseFloat(minMpg));
     }
 
+    // Pagination
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const total = filteredCars.length;
+    const startIndex = (pageNum - 1) * limitNum;
+    const endIndex = startIndex + limitNum;
+    const paginatedCars = filteredCars.slice(startIndex, endIndex);
 
     res.json({
-        cars: filteredCars,
+        cars: paginatedCars,
+        total,
+        page: pageNum,
+        limit: limitNum,
+        totalPages: Math.ceil(total / limitNum)
     });
 };
 
