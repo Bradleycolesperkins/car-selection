@@ -13,8 +13,18 @@ async function initializeCars() {
 initializeCars();
 
 exports.getCars = (req, res) => {
+    const { make, model } = req.query;
+    let filteredCars = [...cars];
+
+    if (make) {
+        filteredCars = filteredCars.filter(car => car.make.toLowerCase() === make.toLowerCase());
+    }
+    if (model) {
+        filteredCars = filteredCars.filter(car => car.model.toLowerCase() === model.toLowerCase());
+    }
+
     res.json({
-        cars: cars,
+        cars: filteredCars,
     });
 };
 

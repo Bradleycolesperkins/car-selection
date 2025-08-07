@@ -13,13 +13,14 @@ function App() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/cars')
+        const query = new URLSearchParams({ ...filters }).toString();
+        fetch(`http://localhost:3001/api/cars?${query}`)
             .then((res) => res.json())
             .then((data) => {
               setCars(data.cars);
             })
             .catch((error) => console.error('Error fetching cars:', error));
-    }, []);
+    }, [filters]);
 
     useEffect(() => {
         fetch('http://localhost:3001/api/cars/filters')
