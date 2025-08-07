@@ -16,10 +16,10 @@ function App() {
 
 
   return (
-    <div className="App">
-        <h1>Car Selection</h1>
-        <CarList cars={cars} />
-    </div>
+      <div className="container mx-auto p-4">
+          <h1 className="text-2xl font-bold mb-4">Car Selection</h1>
+          <CarList cars={cars} />
+      </div>
   );
 }
 
