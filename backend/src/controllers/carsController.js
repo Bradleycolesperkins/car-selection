@@ -17,3 +17,10 @@ exports.getCars = (req, res) => {
         cars: cars,
     });
 };
+
+exports.getFilterOptions = (req, res) => {
+    const makes = [...new Set(cars.map(car => car.make))].sort();
+    const models = [...new Set(cars.map(car => car.model))].sort();
+
+    res.json({ makes, models });
+};
