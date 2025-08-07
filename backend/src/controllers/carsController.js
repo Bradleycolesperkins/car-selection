@@ -10,6 +10,8 @@ async function initializeCars() {
     }
 }
 
+exports.initializeCars = initializeCars;
+
 initializeCars();
 
 exports.getCars = (req, res) => {
