@@ -6,6 +6,7 @@ async function loadCSVs() {
     const files = [
         'makes-sample.csv',
         'models-sample.csv',
+        'submodels-sample.csv',
     ];
 
     const data = {};
@@ -28,10 +29,12 @@ async function loadCSVs() {
     // merge makes amd models to create the cars
     const cars = data?.models.map(model => {
         const make = data?.makes.find(make => make['Make Id'] === model['Make Id']);
+        const submodel = data?.submodels.find(make => make['Make Id'] === model['Make Id']);
 
         return {
             make: make ? make['Make Name'] : '',
             model: model ? model['Model Name'] : '',
+            submodel: model ? submodel['Submodel Name'] : '',
             year: model ? model['Model Year'] : '',
         };
     });
