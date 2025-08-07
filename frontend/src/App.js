@@ -18,10 +18,10 @@ function App() {
   return (
     <div className="App">
         {
-            cars?.makes?.map((make, index) => {
+            cars?.map((car, index) => {
                 return (
                     <>
-                        {make['Make Name']}
+                        {car['make']} - {car['model']}
                         <br/>
                     </>
                 );
