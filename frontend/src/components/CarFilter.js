@@ -5,6 +5,11 @@ function CarFilter({ filterOptions = {}, onFilter }) {
         make: '',
         model: '',
         year: '',
+        bodyType: '',
+        submodel: '',
+        fuelType: '',
+        maxPrice: '',
+        minMpg: ''
     });
 
     const handleChange = (e) => {
@@ -14,7 +19,7 @@ function CarFilter({ filterOptions = {}, onFilter }) {
         onFilter(newFilters);
     };
 
-    const { makes = [], models = [], years = []} = filterOptions;
+    const { makes = [], models = [], years = [], bodyTypes = [], submodels = [], fuelTypes = [] } = filterOptions;
 
     return (
         <div className="flex flex-wrap gap-4 mb-6">
@@ -36,6 +41,40 @@ function CarFilter({ filterOptions = {}, onFilter }) {
                     <option key={year} value={year}>{year}</option>
                 ))}
             </select>
+            <select name="bodyType" value={filters.bodyType} onChange={handleChange} className="border rounded p-2">
+                <option value="">Select Body Type</option>
+                {bodyTypes.map((type) => (
+                    <option key={type} value={type}>{type}</option>
+                ))}
+            </select>
+            <select name="submodel" value={filters.submodel} onChange={handleChange} className="border rounded p-2">
+                <option value="">Select Submodel</option>
+                {submodels.map((submodel) => (
+                    <option key={submodel} value={submodel}>{submodel}</option>
+                ))}
+            </select>
+            <select name="fuelType" value={filters.fuelType} onChange={handleChange} className="border rounded p-2">
+                <option value="">Select Fuel Type</option>
+                {fuelTypes.map((fuel) => (
+                    <option key={fuel} value={fuel}>{fuel}</option>
+                ))}
+            </select>
+            <input
+                name="maxPrice"
+                type="number"
+                value={filters.maxPrice}
+                onChange={handleChange}
+                placeholder="Max Price"
+                className="border rounded p-2"
+            />
+            <input
+                name="minMpg"
+                type="number"
+                value={filters.minMpg}
+                onChange={handleChange}
+                placeholder="Min MPG"
+                className="border rounded p-2"
+            />
         </div>
     );
 }

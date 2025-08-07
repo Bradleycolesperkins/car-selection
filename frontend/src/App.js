@@ -5,8 +5,8 @@ import CarFilter from "./components/CarFilter";
 
 function App() {
     const [cars, setCars] = useState([]);
-    const [filterOptions, setFilterOptions] = useState({ makes: [], models: []});
-    const [filters, setFilters] = useState({ make: '', model: ''});
+    const [filterOptions, setFilterOptions] = useState({ makes: [], models: [], years: [], bodyTypes: [], submodels: [], fuelTypes: [] });
+    const [filters, setFilters] = useState({ make: '', model: '', year: '', bodyType: '', submodel: '', fuelType: '', maxPrice: '', minMpg: '' });
 
     const handleFilter = (newFilters) => {
         setFilters(newFilters);
