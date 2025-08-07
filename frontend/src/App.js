@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-
 import './App.css';
+import CarList from "./components/CarList";
 
 function App() {
   const [cars, setCars] = useState([]);
@@ -17,16 +17,8 @@ function App() {
 
   return (
     <div className="App">
-        {
-            cars?.map((car, index) => {
-                return (
-                    <>
-                        {car['make']} - {car['model']}
-                        <br/>
-                    </>
-                );
-            })
-        }
+        <h1>Car Selection</h1>
+        <CarList cars={cars} />
     </div>
   );
 }
