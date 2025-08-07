@@ -22,7 +22,9 @@ exports.getCars = (req, res) => {
         filteredCars = filteredCars.filter(car => car.make.toLowerCase() === make.toLowerCase());
     }
     if (model) {
-        filteredCars = filteredCars.filter(car => car.model.toLowerCase() === model.toLowerCase());
+        filteredCars = filteredCars.filter(car => 
+            typeof car.model === 'string' && car.model.toLowerCase() === model.toLowerCase()
+        );
     }
     if (year) {
         filteredCars = filteredCars.filter(car => parseInt(car.year) === parseInt(year));
