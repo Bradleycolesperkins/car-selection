@@ -4,6 +4,7 @@ function CarFilter({ filterOptions = {}, onFilter }) {
     const [filters, setFilters] = useState({
         make: '',
         model: '',
+        year: '',
     });
 
     const handleChange = (e) => {
@@ -13,7 +14,7 @@ function CarFilter({ filterOptions = {}, onFilter }) {
         onFilter(newFilters);
     };
 
-    const { makes = [], models = []} = filterOptions;
+    const { makes = [], models = [], years = []} = filterOptions;
 
     return (
         <div className="flex flex-wrap gap-4 mb-6">
@@ -27,6 +28,12 @@ function CarFilter({ filterOptions = {}, onFilter }) {
                 <option value="">Select Model</option>
                 {models.map((model) => (
                     <option key={model} value={model}>{model}</option>
+                ))}
+            </select>
+            <select name="year" value={filters.year} onChange={handleChange} className="border rounded p-2">
+                <option value="">Select Year</option>
+                {years.map((year) => (
+                    <option key={year} value={year}>{year}</option>
                 ))}
             </select>
         </div>

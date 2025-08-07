@@ -32,6 +32,7 @@ async function loadCSVs() {
         return {
             make: make ? make['Make Name'] : '',
             model: model ? model['Model Name'] : '',
+            year: model ? model['Model Year'] : '',
         };
     });
 
