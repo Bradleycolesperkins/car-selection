@@ -23,6 +23,7 @@ async function loadCSVs() {
                 columns: true,
                 skip_empty_lines: true,
                 trim: true,
+                cast: true
             });
         } catch (error) {
             console.error(`Error loading ${file}:`, error);
