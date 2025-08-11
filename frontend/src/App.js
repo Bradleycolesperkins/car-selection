@@ -22,7 +22,7 @@ function App() {
 
     useEffect(() => {
         const query = new URLSearchParams({ ...filters, page, limit }).toString();
-        fetch(`http://localhost:3001/api/cars?${query}`)
+        fetch(`${process.env.REACT_APP_API_URL}/api/cars?${query}`)
             .then((res) => res.json())
             .then((data) => {
                 setCars(data.cars);
@@ -32,7 +32,7 @@ function App() {
     }, [filters, page, limit]);
 
     useEffect(() => {
-        fetch('http://localhost:3001/api/cars/filters')
+        fetch(`${process.env.REACT_APP_API_URL}/api/cars/filters`)
             .then((res) => res.json())
             .then((data) => setFilterOptions(data))
             .catch((error) => console.error('Error fetching filter options:', error));

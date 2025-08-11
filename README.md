@@ -55,6 +55,23 @@ car-selection/
 - Node.js (latest LTS version recommended)
 - npm or yarn
 
+### Environment Configuration
+
+#### Backend Environment
+1. Create a `.env` file in the backend directory with the following variables:
+   ```
+   PORT=3001
+   CORS_ORIGIN=http://localhost:3000
+   ```
+   Adjust these values according to your deployment environment.
+
+#### Frontend Environment
+1. Create a `.env` file in the frontend directory with the following variables:
+   ```
+   REACT_APP_API_URL=http://localhost:3001
+   ```
+   Adjust this value to match your backend URL in your deployment environment.
+
 ### Backend Setup
 1. Navigate to the backend directory:
    ```
@@ -70,7 +87,7 @@ car-selection/
    ```
    npm start
    ```
-   The server will run on http://localhost:3001
+   The server will run on the port specified in your `.env` file (default: 3001)
 
 ### Frontend Setup
 1. Navigate to the frontend directory:
@@ -140,12 +157,12 @@ Returns available filter options based on the data.
 **Response:**
 ```json
 {
-  "makes": [...],
-  "models": [...],
-  "years": [...],
-  "bodyTypes": [...],
-  "submodels": [...],
-  "fuelTypes": [...]
+  "makes": ["Toyota", "Honda", "..."],
+  "models": ["Camry", "Civic", "..."],
+  "years": ["2020", "2021", "..."],
+  "bodyTypes": ["Sedan", "SUV", "..."],
+  "submodels": ["LE", "EX", "..."],
+  "fuelTypes": ["Gasoline", "Hybrid", "..."]
 }
 ```
 
