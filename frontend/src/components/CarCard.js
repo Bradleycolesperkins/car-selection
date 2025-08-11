@@ -7,7 +7,9 @@
  * @param {Object} props - Component props
  * @param {Object} props.car - Car data object containing all specifications
  */
-function CarCard({ car }) {
+import { CarType, defaultCar } from '../types/carTypes';
+
+function CarCard({ car = defaultCar }) {
     return (
         <div className="border rounded-lg p-4 shadow-sm bg-white">
             {/* Car title with year, make, model and submodel */}
@@ -23,5 +25,10 @@ function CarCard({ car }) {
         </div>
     );
 }
+
+// Add prop type validation
+CarCard.propTypes = {
+    car: CarType
+};
 
 export default CarCard;

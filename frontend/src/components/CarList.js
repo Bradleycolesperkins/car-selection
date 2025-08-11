@@ -7,9 +7,11 @@
  * @param {Object} props - Component props
  * @param {Array} props.cars - Array of car objects to display
  */
+import PropTypes from 'prop-types';
 import CarCard from "./CarCard";
+import { CarType } from '../types/carTypes';
 
-function CarList({ cars }) {
+function CarList({ cars = [] }) {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {/* Conditional rendering based on whether cars are available */}
@@ -23,5 +25,10 @@ function CarList({ cars }) {
         </div>
     );
 }
+
+// Add prop type validation
+CarList.propTypes = {
+    cars: PropTypes.arrayOf(CarType)
+};
 
 export default CarList;

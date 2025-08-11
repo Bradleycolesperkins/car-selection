@@ -10,6 +10,7 @@
  * @param {Function} props.onFilter - Callback function when filters change
  */
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function CarFilter({ filterOptions = {}, onFilter }) {
     // Local state to track current filter selections
@@ -121,5 +122,18 @@ function CarFilter({ filterOptions = {}, onFilter }) {
         </div>
     );
 }
+
+// Add prop type validation
+CarFilter.propTypes = {
+    filterOptions: PropTypes.shape({
+        makes: PropTypes.arrayOf(PropTypes.string),
+        models: PropTypes.arrayOf(PropTypes.string),
+        years: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+        bodyTypes: PropTypes.arrayOf(PropTypes.string),
+        submodels: PropTypes.arrayOf(PropTypes.string),
+        fuelTypes: PropTypes.arrayOf(PropTypes.string)
+    }),
+    onFilter: PropTypes.func.isRequired
+};
 
 export default CarFilter;
