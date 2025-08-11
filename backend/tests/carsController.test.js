@@ -74,7 +74,7 @@ describe('Cars Controller', () => {
             },
         ];
         loadCSVs.mockResolvedValue(mockCars);
-        await carsController.initializeCars();
+        await carsController.initialiseCars();
     });
 
     describe('getCars', () => {
