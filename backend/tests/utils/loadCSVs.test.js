@@ -1,5 +1,5 @@
 const path = require('path');
-const { loadCSVs } = require('../src/utils/loadCSVs');
+const { loadCSVs } = require('../../src/utils/loadCSVs');
 
 // Mock fs.promises.readFile
 jest.mock('fs', () => ({

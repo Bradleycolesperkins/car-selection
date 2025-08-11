@@ -69,8 +69,10 @@ function getFilterOptions() {
     return { makes, models, years, bodyTypes, submodels, fuelTypes };
 }
 
-// Initialise cars when the service is first loaded
-initialiseCars();
+// Only initialise in non-test environment
+if (process.env.NODE_ENV !== 'test') {
+    initialiseCars();
+}
 
 module.exports = {
     initialiseCars,
