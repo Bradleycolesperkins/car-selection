@@ -46,11 +46,11 @@ function CarFilter({ filterOptions = {}, onFilter }) {
     }
 
     /**
-     * Renders a set of filter controls in a responsive flex layout
+     * Renders a set of filter controls in a responsive grid layout
      * Each filter is a dropdown menu or numeric input field
      */
     return (
-        <div className="flex flex-wrap gap-4 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             {/* Car manufacturer filter */}
             <select name="make" value={filters.make} onChange={handleChange} className="border rounded p-2" aria-label="Select Make">
                 <option value="">Select Make</option>
