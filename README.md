@@ -2,6 +2,8 @@
 
 A full-stack web application for browsing and filtering car information. This application allows users to search for cars based on various criteria such as make, model, year, body type, and more.
 
+![Car Selection Application Demo](.github/demo.gif)
+
 ## Project Overview
 
 The Car Selection Application consists of:
