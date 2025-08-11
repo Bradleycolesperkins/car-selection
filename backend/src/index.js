@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express')
 const cors = require('cors');
 const carsRoutes = require('./routes/cars');
+const { initialiseCars } = require('./services/carsService');
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -9,6 +10,13 @@ const port = process.env.PORT || 3001
 app.use(cors({
     origin: process.env.CORS_ORIGIN || 'http://localhost:3000'
 }));
+
+// Initialise cars data only in non-test environment
+if (process.env.NODE_ENV !== 'test') {
+    initialiseCars()
+        .then(() => console.log('Cars data initialized successfully'))
+        .catch(err => console.error('Failed to initialize cars data:', err));
+}
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

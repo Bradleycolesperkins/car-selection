@@ -69,10 +69,7 @@ function getFilterOptions() {
     return { makes, models, years, bodyTypes, submodels, fuelTypes };
 }
 
-// Only initialise in non-test environment
-if (process.env.NODE_ENV !== 'test') {
-    initialiseCars();
-}
+// Initialization will be handled explicitly at application startup
 
 module.exports = {
     initialiseCars,
