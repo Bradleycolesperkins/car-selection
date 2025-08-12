@@ -11,6 +11,7 @@ import './App.css';
 import CarList from "./components/CarList";
 import CarFilter from "./components/CarFilter";
 import Pagination from "./components/Pagination";
+import { DEFAULT_FILTERS } from './constants/filterConstants';
 
 function App() {
     // State for storing the list of cars currently displayed
@@ -27,16 +28,7 @@ function App() {
     });
     
     // State for tracking currently applied filters
-    const [filters, setFilters] = useState({ 
-        make: '', 
-        model: '', 
-        year: '', 
-        bodyType: '', 
-        submodel: '', 
-        fuelType: '', 
-        maxPrice: '', 
-        minMpg: '' 
-    });
+    const [filters, setFilters] = useState(DEFAULT_FILTERS);
     
     // Pagination state
     const [page, setPage] = useState(1);
@@ -45,7 +37,7 @@ function App() {
 
     /**
      * Updates the filter state when user changes filter selections
-     * 
+     *
      * @param {Object} newFilters - The updated filter values
      */
     const handleFilter = (newFilters) => {

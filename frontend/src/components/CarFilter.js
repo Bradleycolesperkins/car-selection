@@ -11,19 +11,11 @@
  */
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { DEFAULT_FILTERS } from '../constants/filterConstants';
 
 function CarFilter({ filterOptions = {}, onFilter }) {
     // Local state to track current filter selections
-    const [filters, setFilters] = useState({
-        make: '',
-        model: '',
-        year: '',
-        bodyType: '',
-        submodel: '',
-        fuelType: '',
-        maxPrice: '',
-        minMpg: ''
-    });
+    const [filters, setFilters] = useState(DEFAULT_FILTERS);
 
     /**
      * Handles changes to any filter control
@@ -36,6 +28,15 @@ function CarFilter({ filterOptions = {}, onFilter }) {
         const newFilters = { ...filters, [name]: value };
         setFilters(newFilters);
         onFilter(newFilters);
+    };
+    
+    /**
+     * Clears all filter selections
+     * Resets the local state and notifies the parent component
+     */
+    const handleClearFilters = () => {
+        setFilters(DEFAULT_FILTERS);
+        onFilter(DEFAULT_FILTERS);
     };
 
     // Destructure filter options with defaults to prevent errors
@@ -99,26 +100,36 @@ function CarFilter({ filterOptions = {}, onFilter }) {
                     <option key={fuel} value={fuel}>{fuel}</option>
                 ))}
             </select>
+
+            <div className="flex items-center space-x-2 sm:col-span-2">
+                {/* Maximum price numeric filter */}
+                <input
+                    name="maxPrice"
+                    type="number"
+                    value={filters.maxPrice}
+                    onChange={handleChange}
+                    placeholder="Max Price"
+                    className="border rounded p-2 w-full"
+                />
             
-            {/* Maximum price numeric filter */}
-            <input
-                name="maxPrice"
-                type="number"
-                value={filters.maxPrice}
-                onChange={handleChange}
-                placeholder="Max Price"
-                className="border rounded p-2"
-            />
-            
-            {/* Minimum fuel efficiency (MPG) numeric filter */}
-            <input
-                name="minMpg"
-                type="number"
-                value={filters.minMpg}
-                onChange={handleChange}
-                placeholder="Min MPG"
-                className="border rounded p-2"
-            />
+                {/* Minimum fuel efficiency (MPG) numeric filter */}
+                <input
+                    name="minMpg"
+                    type="number"
+                    value={filters.minMpg}
+                    onChange={handleChange}
+                    placeholder="Min MPG"
+                    className="border rounded p-2 w-full"
+                />
+                {/* Clear all filters button */}
+                <button
+                    onClick={handleClearFilters}
+                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded whitespace-nowrap"
+                    aria-label="Clear all filters"
+                >
+                    Clear Filters
+                </button>
+            </div>
         </div>
     );
 }
