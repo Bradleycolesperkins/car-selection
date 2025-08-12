@@ -34,6 +34,9 @@ car-selection/
 │   ├── src/                 # Source code
 │   │   ├── components/      # React components
 │   │   │   └── __tests__/   # Frontend Component tests
+│   │   ├── constants/       # Application constants
+│   │   ├── types/           # Type definitions
+│   │   ├── __tests__/       # Application tests
 │   │   ├── App.js           # Main application component
 │   │   └── index.js         # Entry point
 │   └── package.json         # Frontend dependencies
@@ -43,6 +46,7 @@ car-selection/
 │   ├── src/                 # Source code
 │   │   ├── controllers/     # API controllers
 │   │   ├── routes/          # API routes
+│   │   ├── services/        # Business logic services
 │   │   ├── utils/           # Utility functions
 │   │   └── index.js         # Server entry point
 │   ├── tests/               # Backend tests
@@ -145,7 +149,7 @@ Returns a paginated list of cars, optionally filtered by query parameters.
 **Response:**
 ```json
 {
-  "cars": [...],
+  "cars": [{"id": 1, "make": "Toyota", "model": "Camry"}, {"id": 2, "make": "Honda", "model": "Civic"}],
   "total": 100,
   "page": 1,
   "limit": 10,
